@@ -10,7 +10,6 @@ services:
       - LOAD_EX=n
       - EXECUTOR=Sequential
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
-      - AIRFLOW_WEBSERVER_SECRET_KEY=56c16cd49e4b3507ec392c28cdfde34d
     logging:
       options:
         max-size: 10m
@@ -41,7 +40,6 @@ services:
       - LOAD_EX=n
       - EXECUTOR=Sequential
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
-      - AIRFLOW_WEBSERVER_SECRET_KEY=56c16cd49e4b3507ec392c28cdfde34d
     command: bash -c "pip install -r ./requirements.txt && airflow db upgrade && airflow scheduler"
     networks:
       - confluent

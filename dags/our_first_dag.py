@@ -2,21 +2,22 @@ from datetime import datetime, timedelta
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-
+import logging
 
 default_args = {
     'owner': 'tantd',
     'retries': 5,
     'retry_delay': timedelta(minutes=2)
 }
-
+# retries that will be attempted  in case  of task failure. If a task fails Airflow will retry executing it up to 5 times before marking it as failed.
+# 'retry_delay': timedelta(minutes=2) time retry  = 2 minute
 
 with DAG(
-    dag_id='our_first_dag',
-    default_args=default_args,
-    description='This is our first dag that we write',
-    start_date=datetime(2021, 7, 29, 2),
-    schedule_interval='@daily'
+        dag_id='our_first_dag',
+        default_args=default_args,
+        description='This is our first dag that we write',
+        start_date=datetime(2021, 7, 29, 2),
+        schedule_interval='@daily'
 ) as dag:
     task1 = BashOperator(
         task_id='first_task',
@@ -43,3 +44,8 @@ with DAG(
 
     # Task dependency method 3
     task1 >> [task2, task3]
+
+#  BashOperator  : run cmd
+
+# Node
+#
