@@ -1,3 +1,4 @@
+
 from datetime import datetime, timedelta
 
 from airflow import DAG
@@ -43,7 +44,7 @@ with DAG(
     # task1 >> task3
 
     # Task dependency method 3
-    task1 >> [task2, task3]
+    # task1 >> [task2, task3]
 
 #  BashOperator  : run cmd
 
